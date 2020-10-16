@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Grid from './Grid'
+
+const rows = 25;
+const columns = 25;
+
+const randomValue = () => {
+  return Math.random() < 0.3
+}
+
+const newBoard = () => {
+  const grid = [];
+  for (let r = 0; r < rows; r++) {
+      grid[r] = [];
+      for (let c = 0; c < columns; c++) {
+          grid[r][c] = randomValue();
+      }
+  }
+  return grid;
+};
 
 function App() {
+  const [board, setBoard] = useState(newBoard)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Game Of Life</h1>
+      <div className="container">
+        <Grid board={board} />
+      </div>
     </div>
   );
 }
