@@ -4,22 +4,26 @@ body {
   text-align: center;
 }
 
-table {
-  margin: 0 auto;
-  border-collapse: collapse;
-  background-color: black;
-}
-
-td {
+.alive {
   width: 20px;
   height: 20px;
+  background-color: lavender;
   border: 1px solid darkgoldenrod;
 }
 
-.alive {
-  background-color: lavender;
+.dead {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border: 1px solid darkgoldenrod;
 }
 
-.dead {
-  background-color: black;
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+ul li {
+  font-size: 2rem;
 }
