@@ -3,15 +3,25 @@ import './App.css';
 import produce from 'immer';
 import { resetGrid, randomizeGrid, countNeighbors } from './functions';
 
-const numRows = 25;
-const numCols = 25;
-const speed = 500;
+const initialValues = {
+  rows: 25,
+  columns: 25,
+}
 
 const App = () => {
   const [grid, setGrid] = useState(() => resetGrid());
 
+  const [formValue, setFormValue] = useState(initialValues)
   const [running, setRunning] = useState(false);
   const [generation, setGeneration] = useState(0);
+
+  const numRows = formValue.rows;
+  const numCols = formValue.columns;
+  const speed = 500;
+
+  const handleChange = e => {
+    setFormValue({ ...formValue, [e.target.name]: e.target.value})
+  }
 
   const runningRef = useRef(running);
   runningRef.current = running;
@@ -103,6 +113,16 @@ const App = () => {
         Randomize
       </button>
       <p>Generation: {generation}</p>
+      <form>
+        <label for='rows'>Change number of rows: </label>
+        <input type='text' value={formValue.rows} name='rows' onChange={handleChange} />
+        <br/>
+        <br/>
+        <label for='columns'>Change number of columns:</label>
+        <input type='text' value={formValue.columns} name='columns' onChange={handleChange} />
+
+        {/* <button type='submit'>Submit</button> */}
+      </form>
     </>
   );
 };
